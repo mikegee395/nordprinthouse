@@ -1,0 +1,586 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Quicksand:wght@400;500;600;700&display=swap');
+
+  :root {
+    --cream: #fdf8f0;
+    --warm: #f5efe6;
+    --gold: #c9974a;
+    --gold-light: #e8c070;
+    --deep: #1a0a2e;
+    --mid: #6b4226;
+    --soft: #d4a96a;
+    --accent: #e07b5a;
+    --green: #4a7c59;
+  }
+
+  .nph-wrap * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .nph-wrap {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--deep);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .nph-header {
+    background: var(--deep);
+    padding: 32px 24px 28px;
+    text-align: center;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .nph-badge {
+    display: inline-block;
+    background: rgba(201,151,74,0.2);
+    border: 1px solid rgba(201,151,74,0.4);
+    color: var(--gold-light);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+
+  .nph-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .nph-header h1 span { color: var(--gold-light); }
+  .nph-header p { color: rgba(255,255,255,0.55); font-size: 0.82rem; font-weight: 500; }
+  .nph-emoji { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+
+  .nph-body {
+    background: var(--cream);
+    padding: 28px 20px 40px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .nph-section { margin-bottom: 28px; }
+
+  .nph-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--deep);
+    margin-bottom: 4px;
+  }
+
+  .nph-section-sub {
+    font-size: 0.75rem;
+    color: var(--mid);
+    font-weight: 600;
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+
+  .nph-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e8ddd0, transparent);
+    margin: 24px 0;
+  }
+
+  .nph-field { margin-bottom: 16px; }
+
+  .nph-wrap label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 8px;
+  }
+
+  .nph-wrap input[type="text"],
+  .nph-wrap input[type="email"],
+  .nph-wrap textarea,
+  .nph-wrap select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e8ddd0;
+    border-radius: 12px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--deep);
+    background: #fff;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .nph-wrap input:focus,
+  .nph-wrap textarea:focus,
+  .nph-wrap select:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,151,74,0.15);
+  }
+
+  .nph-wrap textarea { resize: vertical; min-height: 80px; }
+
+  .nph-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .nph-chip {
+    padding: 8px 14px;
+    border-radius: 30px;
+    border: 2px solid #e8ddd0;
+    background: #fff;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--mid);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nph-chip.selected {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+  }
+
+  .nph-skins { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .nph-skin {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nph-skin.selected {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,151,74,0.3);
+    transform: scale(1.1);
+  }
+
+  .nph-swatches { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .nph-swatch {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nph-swatch.selected {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,151,74,0.3);
+    transform: scale(1.15);
+  }
+
+  .nph-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #fff;
+    border: 2px solid #e8ddd0;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .nph-toggle-label { font-size: 0.88rem; font-weight: 700; color: var(--deep); }
+
+  .nph-toggle {
+    width: 44px; height: 24px;
+    background: #ddd;
+    border-radius: 12px;
+    position: relative;
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+
+  .nph-toggle.on { background: var(--gold); }
+
+  .nph-toggle::after {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    top: 3px; left: 3px;
+    transition: transform 0.3s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+
+  .nph-toggle.on::after { transform: translateX(20px); }
+
+  .nph-packages { display: flex; flex-direction: column; gap: 10px; }
+
+  .nph-package {
+    border: 2px solid #e8ddd0;
+    border-radius: 14px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #fff;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nph-package.selected {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, #fdf8f0, #fef3e0);
+  }
+
+  .nph-package-badge {
+    position: absolute;
+    top: -9px; right: 14px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 9px;
+    border-radius: 10px;
+    text-transform: uppercase;
+  }
+
+  .nph-package-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--deep);
+  }
+
+  .nph-package-desc { font-size: 0.72rem; color: var(--mid); font-weight: 600; margin-top: 2px; }
+  .nph-package-price { font-size: 1.1rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+
+  .nph-submit {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--gold), var(--accent));
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    box-shadow: 0 6px 20px rgba(201,151,74,0.35);
+  }
+
+  .nph-helper { font-size: 0.7rem; color: var(--soft); margin-top: 6px; font-weight: 600; }
+
+  .nph-success {
+    display: none;
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--cream);
+    border-radius: 20px;
+  }
+
+  .nph-success-icon { font-size: 60px; display: block; margin-bottom: 16px; }
+
+  .nph-success h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--deep);
+    margin-bottom: 8px;
+  }
+
+  .nph-success p { color: var(--mid); font-size: 0.88rem; font-weight: 600; line-height: 1.6; }
+
+  .nph-ref {
+    background: var(--warm);
+    border: 2px dashed var(--soft);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 20px;
+    font-size: 0.78rem;
+    color: var(--mid);
+    font-weight: 600;
+  }
+
+  .nph-ref strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+</style>
+
+<div class="nph-wrap">
+
+  <div class="nph-header">
+    <span class="nph-emoji">📖</span>
+    <div class="nph-badge">NordPrintHouse</div>
+    <h1>Create <span>Their</span> Story</h1>
+    <p>Fill in your child's details — we'll do the rest</p>
+  </div>
+
+  <div class="nph-body" id="nphForm">
+
+    <div class="nph-section">
+      <div class="nph-section-title">About Your Child 🧒</div>
+      <div class="nph-section-sub">Tell us who this magical book is for</div>
+
+      <div class="nph-field">
+        <label>Child's First Name *</label>
+        <input type="text" id="nphName" placeholder="e.g. Oliver, Amara, Isla..." maxlength="20">
+      </div>
+
+      <div class="nph-field">
+        <label>Age *</label>
+        <select id="nphAge">
+          <option value="">Select age...</option>
+          <option>1</option><option>2</option><option>3</option><option>4</option>
+          <option>5</option><option>6</option><option>7</option><option>8</option>
+          <option>9</option><option>10</option>
+        </select>
+      </div>
+
+      <div class="nph-field">
+        <label>Pronouns *</label>
+        <div class="nph-chips">
+          <button class="nph-chip" onclick="nphChip(this,'gender','He/Him')">He / Him</button>
+          <button class="nph-chip" onclick="nphChip(this,'gender','She/Her')">She / Her</button>
+          <button class="nph-chip" onclick="nphChip(this,'gender','They/Them')">They / Them</button>
+        </div>
+      </div>
+
+      <div class="nph-field">
+        <label>Favourite Animal *</label>
+        <div class="nph-chips">
+          <button class="nph-chip" onclick="nphChip(this,'animal','Dragon')">🐉 Dragon</button>
+          <button class="nph-chip" onclick="nphChip(this,'animal','Fox')">🦊 Fox</button>
+          <button class="nph-chip" onclick="nphChip(this,'animal','Butterfly')">🦋 Butterfly</button>
+          <button class="nph-chip" onclick="nphChip(this,'animal','Dolphin')">🐬 Dolphin</button>
+          <button class="nph-chip" onclick="nphChip(this,'animal','Lion')">🦁 Lion</button>
+          <button class="nph-chip" onclick="nphChip(this,'animal','Elephant')">🐘 Elephant</button>
+          <button class="nph-chip" onclick="nphChip(this,'animal','Unicorn')">🦄 Unicorn</button>
+          <button class="nph-chip" onclick="nphChip(this,'animal','Panda')">🐼 Panda</button>
+        </div>
+      </div>
+
+      <div class="nph-field">
+        <label>Adventure Theme *</label>
+        <div class="nph-chips">
+          <button class="nph-chip" onclick="nphChip(this,'theme','Moon & Stars')">🌙 Moon & Stars</button>
+          <button class="nph-chip" onclick="nphChip(this,'theme','Ocean')">🌊 Ocean</button>
+          <button class="nph-chip" onclick="nphChip(this,'theme','Castle')">🏰 Castle</button>
+          <button class="nph-chip" onclick="nphChip(this,'theme','Space')">🚀 Space</button>
+          <button class="nph-chip" onclick="nphChip(this,'theme','Forest')">🌲 Forest</button>
+          <button class="nph-chip" onclick="nphChip(this,'theme','Superhero')">🦸 Superhero</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="nph-divider"></div>
+
+    <div class="nph-section">
+      <div class="nph-section-title">Their Appearance 🎨</div>
+      <div class="nph-section-sub">So the illustrations look just like them</div>
+
+      <div class="nph-field">
+        <label>Skin Tone *</label>
+        <div class="nph-skins">
+          <button class="nph-skin" style="background:#FDDBB4" onclick="nphSkin(this,'Light')" title="Light"></button>
+          <button class="nph-skin" style="background:#EAB88A" onclick="nphSkin(this,'Light Medium')" title="Light Medium"></button>
+          <button class="nph-skin" style="background:#C68642" onclick="nphSkin(this,'Medium')" title="Medium"></button>
+          <button class="nph-skin" style="background:#8D5524" onclick="nphSkin(this,'Medium Dark')" title="Medium Dark"></button>
+          <button class="nph-skin" style="background:#4A2912" onclick="nphSkin(this,'Dark')" title="Dark"></button>
+        </div>
+      </div>
+
+      <div class="nph-field">
+        <label>Hair Colour *</label>
+        <div class="nph-swatches" id="hairSwatches">
+          <button class="nph-swatch" style="background:#1a0800" onclick="nphHair(this,'Black')" title="Black"></button>
+          <button class="nph-swatch" style="background:#3b1f0a" onclick="nphHair(this,'Dark Brown')" title="Dark Brown"></button>
+          <button class="nph-swatch" style="background:#7b4a1e" onclick="nphHair(this,'Brown')" title="Brown"></button>
+          <button class="nph-swatch" style="background:#c4832d" onclick="nphHair(this,'Auburn')" title="Auburn"></button>
+          <button class="nph-swatch" style="background:#d4a044" onclick="nphHair(this,'Blonde')" title="Blonde"></button>
+          <button class="nph-swatch" style="background:#f0e6c0;border:1px solid #ddd" onclick="nphHair(this,'Light Blonde')" title="Light Blonde"></button>
+          <button class="nph-swatch" style="background:#c0392b" onclick="nphHair(this,'Red')" title="Red"></button>
+          <button class="nph-swatch" style="background:#888" onclick="nphHair(this,'Grey')" title="Grey"></button>
+        </div>
+      </div>
+
+      <div class="nph-field">
+        <label>Hair Style *</label>
+        <div class="nph-chips">
+          <button class="nph-chip" onclick="nphChip(this,'hairstyle','Short & straight')">Short & straight</button>
+          <button class="nph-chip" onclick="nphChip(this,'hairstyle','Long & straight')">Long & straight</button>
+          <button class="nph-chip" onclick="nphChip(this,'hairstyle','Curly')">Curly</button>
+          <button class="nph-chip" onclick="nphChip(this,'hairstyle','Wavy')">Wavy</button>
+          <button class="nph-chip" onclick="nphChip(this,'hairstyle','Pigtails')">Pigtails</button>
+          <button class="nph-chip" onclick="nphChip(this,'hairstyle','Braids')">Braids</button>
+          <button class="nph-chip" onclick="nphChip(this,'hairstyle','Afro')">Afro</button>
+          <button class="nph-chip" onclick="nphChip(this,'hairstyle','Bun')">Bun</button>
+        </div>
+      </div>
+
+      <div class="nph-field">
+        <label>Eye Colour *</label>
+        <div class="nph-swatches" id="eyeSwatches">
+          <button class="nph-swatch" style="background:#2e4a8a" onclick="nphEye(this,'Blue')" title="Blue"></button>
+          <button class="nph-swatch" style="background:#3d7a3d" onclick="nphEye(this,'Green')" title="Green"></button>
+          <button class="nph-swatch" style="background:#7b5c3a" onclick="nphEye(this,'Brown')" title="Brown"></button>
+          <button class="nph-swatch" style="background:#5a5a5a" onclick="nphEye(this,'Grey')" title="Grey"></button>
+          <button class="nph-swatch" style="background:#2a2a2a" onclick="nphEye(this,'Dark Brown')" title="Dark Brown"></button>
+          <button class="nph-swatch" style="background:#7a9a40" onclick="nphEye(this,'Hazel')" title="Hazel"></button>
+        </div>
+      </div>
+
+      <div class="nph-field">
+        <label>Extras</label>
+        <div class="nph-toggle-row" onclick="nphToggle('glasses')">
+          <span class="nph-toggle-label">👓 Wears Glasses</span>
+          <div class="nph-toggle" id="nphGlasses"></div>
+        </div>
+        <div class="nph-toggle-row" onclick="nphToggle('freckles')">
+          <span class="nph-toggle-label">✨ Has Freckles</span>
+          <div class="nph-toggle" id="nphFreckles"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nph-divider"></div>
+
+    <div class="nph-section">
+      <div class="nph-section-title">Personal Touches 💛</div>
+
+      <div class="nph-field">
+        <label>Who is giving this book?</label>
+        <input type="text" id="nphGiver" placeholder="e.g. Grandma & Grandad, Mummy & Daddy...">
+      </div>
+
+      <div class="nph-field">
+        <label>Dedication Message</label>
+        <textarea id="nphDedication" placeholder="e.g. To our brave and beautiful Amara — loved to the moon and back ❤️" maxlength="200"></textarea>
+        <div class="nph-helper">Max 200 characters</div>
+      </div>
+
+      <div class="nph-field">
+        <label>Etsy Order Number *</label>
+        <input type="text" id="nphOrder" placeholder="e.g. 1234567890">
+      </div>
+
+      <div class="nph-field">
+        <label>Your Email Address *</label>
+        <input type="email" id="nphEmail" placeholder="We'll send updates here">
+      </div>
+
+      <div class="nph-field">
+        <label>Anything else we should know?</label>
+        <textarea id="nphNotes" placeholder="e.g. She loves dinosaurs, has a little brother called Noah..." maxlength="300"></textarea>
+      </div>
+    </div>
+
+    <div class="nph-divider"></div>
+
+    <div class="nph-section">
+      <div class="nph-section-title">Your Package 📦</div>
+      <div class="nph-section-sub">Confirm what you ordered</div>
+      <div class="nph-packages">
+        <div class="nph-package" onclick="nphPackage(this,'PDF Digital Copy £19.99')">
+          <div>
+            <div class="nph-package-name">PDF Digital Copy</div>
+            <div class="nph-package-desc">Delivered by email in 3 days</div>
+          </div>
+          <div class="nph-package-price">£19.99</div>
+        </div>
+        <div class="nph-package" onclick="nphPackage(this,'Printed Softcover £39.99')">
+          <div class="nph-package-badge">Most Popular</div>
+          <div>
+            <div class="nph-package-name">Printed Softcover</div>
+            <div class="nph-package-desc">Professionally printed & posted</div>
+          </div>
+          <div class="nph-package-price">£39.99</div>
+        </div>
+        <div class="nph-package" onclick="nphPackage(this,'Printed Hardcover £59.99')">
+          <div>
+            <div class="nph-package-name">Hardcover Gift Edition</div>
+            <div class="nph-package-desc">Premium hardcover, gift wrapped</div>
+          </div>
+          <div class="nph-package-price">£59.99</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="nph-submit" onclick="nphSubmit()">✨ Submit My Details</button>
+
+  </div>
+
+  <div class="nph-success" id="nphSuccess">
+    <span class="nph-success-icon">🌟</span>
+    <h2>Details Received!</h2>
+    <p>Thank you! We'll begin creating your child's story within 24 hours. You'll receive an email update shortly.</p>
+    <div class="nph-ref">
+      <strong id="nphRef">NPH-00000</strong>
+      Keep this reference for your order
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var nphState = {
+    gender:'', animal:'', theme:'', hairstyle:'',
+    skin:'', hair:'', eye:'',
+    glasses:false, freckles:false, package:''
+  };
+
+  function nphChip(el, key, val) {
+    el.closest('.nph-chips').querySelectorAll('.nph-chip').forEach(function(c){ c.classList.remove('selected'); });
+    el.classList.add('selected');
+    nphState[key] = val;
+  }
+
+  function nphSkin(el, val) {
+    document.querySelectorAll('.nph-skin').forEach(function(b){ b.classList.remove('selected'); });
+    el.classList.add('selected');
+    nphState.skin = val;
+  }
+
+  function nphHair(el, val) {
+    document.querySelectorAll('#hairSwatches .nph-swatch').forEach(function(b){ b.classList.remove('selected'); });
+    el.classList.add('selected');
+    nphState.hair = val;
+  }
+
+  function nphEye(el, val) {
+    document.querySelectorAll('#eyeSwatches .nph-swatch').forEach(function(b){ b.classList.remove('selected'); });
+    el.classList.add('selected');
+    nphState.eye = val;
+  }
+
+  function nphToggle(key) {
+    nphState[key] = !nphState[key];
+    var id = key === 'glasses' ? 'nphGlasses' : 'nphFreckles';
+    document.getElementById(id).classList.toggle('on', nphState[key]);
+  }
+
+  function nphPackage(el, val) {
+    document.querySelectorAll('.nph-package').forEach(function(c){ c.classList.remove('selected'); });
+    el.classList.add('selected');
+    nphState.package = val;
+  }
+
+  function nphSubmit() {
+    var name = document.getElementById('nphName').value;
+    var email = document.getElementById('nphEmail').value;
+    var order = document.getElementById('nphOrder').value;
+    if (!name) { alert("Please enter your child's name"); return; }
+    if (!email) { alert("Please enter your email address"); return; }
+    if (!order) { alert("Please enter your Etsy order number"); return; }
+    document.getElementById('nphForm').style.display = 'none';
+    document.getElementById('nphSuccess').style.display = 'block';
+    document.getElementById('nphRef').textContent = 'NPH-' + Math.floor(10000 + Math.random() * 90000);
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+</script>
