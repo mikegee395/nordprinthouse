@@ -2,119 +2,89 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<style>html { font-size: 18px; }</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NordPrintHouse — Order Form</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #fdf8f0;
-    --warm: #f5efe6;
-    --gold: #c9974a;
-    --gold-light: #e8c070;
-    --deep: #1a0a2e;
-    --mid: #6b4226;
-    --soft: #d4a96a;
-    --accent: #e07b5a;
-    --green: #4a7c59;
-  }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 22px; }
 
   body {
-    background: var(--deep);
     font-family: 'Quicksand', sans-serif;
-    color: var(--deep);
-    min-height: 100vh;
-    padding: 0 0 60px 0;
+    background: #1a0a2e;
+    color: #2c1a0e;
+    width: 100%;
   }
 
   .header {
-    background: var(--deep);
-    padding: 32px 24px 28px;
+    background: #1a0a2e;
+    padding: 44px 28px 36px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
   }
 
-  .header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at 30% 50%, rgba(201,151,74,0.15) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 50%, rgba(224,123,90,0.1) 0%, transparent 60%);
-  }
+  .emoji { font-size: 3.5rem; display: block; margin-bottom: 14px; }
 
-  .star { position: absolute; background: white; border-radius: 50%; }
-
-  .header-badge {
+  .badge {
     display: inline-block;
-    background: rgba(201,151,74,0.2);
-    border: 1px solid rgba(201,151,74,0.4);
-    color: var(--gold-light);
-    font-size: 1.65rem;
-    font-weight: 700;
+    border: 1px solid rgba(201,151,74,0.5);
+    color: #e8c070;
+    font-size: 0.55rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    padding: 5px 14px;
+    padding: 6px 18px;
     border-radius: 20px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
 
   .header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.7rem;
+    font-size: 2.2rem;
     color: #fff;
-    line-height: 1.1;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    line-height: 1.2;
   }
 
-  .header h1 span { color: var(--gold-light); }
-  .header p { color: rgba(255,255,255,0.55); font-size: 1.82rem; font-weight: 500; }
-  .book-emoji { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+  .header h1 span { color: #e8c070; }
+  .header p { color: rgba(255,255,255,0.5); font-size: 0.75rem; }
 
-  .form-wrap {
-    background: var(--cream);
-    border-radius: 24px 24px 0 0;
-    margin-top: -8px;
-    padding: 28px 20px 40px;
+  .body {
+    background: #fdf8f0;
+    border-radius: 28px 28px 0 0;
+    padding: 36px 22px 80px;
+    width: 100%;
   }
 
-  .section {
-    margin-bottom: 28px;
-  }
+  .section { margin-bottom: 40px; }
 
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--deep);
+    font-size: 1.4rem;
+    color: #1a0a2e;
     margin-bottom: 4px;
   }
 
   .section-sub {
-    font-size: 1.75rem;
-    color: var(--mid);
-    font-weight: 600;
-    margin-bottom: 16px;
-    opacity: 0.8;
+    font-size: 0.7rem;
+    color: #6b4226;
+    margin-bottom: 22px;
   }
 
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, #e8ddd0, transparent);
-    margin: 24px 0;
+    margin: 36px 0;
   }
 
-  .field { margin-bottom: 16px; }
+  .field { margin-bottom: 24px; }
 
   label {
     display: block;
-    font-size: 1.72rem;
+    font-size: 0.65rem;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 8px;
+    color: #6b4226;
+    margin-bottom: 12px;
   }
 
   input[type="text"],
@@ -122,259 +92,225 @@
   textarea,
   select {
     width: 100%;
-    padding: 12px 16px;
+    padding: 18px 20px;
     border: 2px solid #e8ddd0;
-    border-radius: 12px;
+    border-radius: 16px;
     font-family: 'Quicksand', sans-serif;
-    font-size: 1.92rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: var(--deep);
+    color: #1a0a2e;
     background: #fff;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    appearance: none;
     -webkit-appearance: none;
+    appearance: none;
   }
 
   input:focus, textarea:focus, select:focus {
     outline: none;
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(201,151,74,0.15);
+    border-color: #c9974a;
+    box-shadow: 0 0 0 4px rgba(201,151,74,0.15);
   }
 
-  textarea { resize: vertical; min-height: 80px; }
+  textarea { min-height: 110px; resize: vertical; }
 
-  select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b4226' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 36px;
-  }
-
-  /* CHIPS */
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
 
   .chip {
-    padding: 12px 18px;
-    border-radius: 30px;
+    padding: 12px 20px;
+    border-radius: 40px;
     border: 2px solid #e8ddd0;
     background: #fff;
     font-family: 'Quicksand', sans-serif;
-    font-size: 1.78rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    color: var(--mid);
+    color: #6b4226;
     cursor: pointer;
     transition: all 0.2s;
   }
 
-  .chip:hover { border-color: var(--gold); color: var(--gold); }
   .chip.selected {
-    background: var(--gold);
-    border-color: var(--gold);
+    background: #c9974a;
+    border-color: #c9974a;
     color: #fff;
-    box-shadow: 0 4px 12px rgba(201,151,74,0.3);
   }
 
-  /* SKIN TONES */
-  .skin-tones { display: flex; gap: 12px; flex-wrap: wrap; }
+  .skins { display: flex; gap: 14px; flex-wrap: wrap; }
 
-  .skin-btn {
-    width: 52px; height: 52px;
+  .skin {
+    width: 58px; height: 58px;
     border-radius: 50%;
     border: 3px solid transparent;
     cursor: pointer;
     transition: all 0.2s;
-    position: relative;
   }
 
-  .skin-btn:hover { transform: scale(1.1); }
-  .skin-btn.selected {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(201,151,74,0.3);
+  .skin.selected {
+    border-color: #c9974a;
+    box-shadow: 0 0 0 4px rgba(201,151,74,0.3);
     transform: scale(1.1);
   }
 
-  /* SWATCHES */
-  .swatches { display: flex; gap: 10px; flex-wrap: wrap; }
+  .swatches { display: flex; gap: 12px; flex-wrap: wrap; }
 
   .swatch {
-    width: 44px; height: 44px;
+    width: 46px; height: 46px;
     border-radius: 50%;
     border: 3px solid transparent;
     cursor: pointer;
     transition: all 0.2s;
   }
 
-  .swatch:hover { transform: scale(1.15); }
   .swatch.selected {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(201,151,74,0.3);
+    border-color: #c9974a;
+    box-shadow: 0 0 0 4px rgba(201,151,74,0.3);
     transform: scale(1.15);
   }
 
-  /* TOGGLE */
   .toggle-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 16px 20px;
     background: #fff;
     border: 2px solid #e8ddd0;
-    border-radius: 12px;
-    margin-bottom: 10px;
+    border-radius: 16px;
+    margin-bottom: 12px;
     cursor: pointer;
   }
 
-  .toggle-label { font-size: 1.88rem; font-weight: 700; color: var(--deep); }
+  .toggle-label { font-size: 0.85rem; font-weight: 700; color: #1a0a2e; }
 
   .toggle {
-    width: 44px; height: 24px;
+    width: 52px; height: 28px;
     background: #ddd;
-    border-radius: 12px;
+    border-radius: 14px;
     position: relative;
     transition: background 0.3s;
     flex-shrink: 0;
   }
 
-  .toggle.on { background: var(--gold); }
+  .toggle.on { background: #c9974a; }
 
   .toggle::after {
     content: '';
     position: absolute;
-    width: 18px; height: 18px;
+    width: 22px; height: 22px;
     background: #fff;
     border-radius: 50%;
     top: 3px; left: 3px;
     transition: transform 0.3s;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 
-  .toggle.on::after { transform: translateX(20px); }
+  .toggle.on::after { transform: translateX(24px); }
 
-  /* PACKAGE CARDS */
-  .packages { display: flex; flex-direction: column; gap: 10px; }
+  .packages { display: flex; flex-direction: column; gap: 12px; }
 
-  .package-card {
+  .package {
     border: 2px solid #e8ddd0;
-    border-radius: 14px;
-    padding: 14px 16px;
+    border-radius: 16px;
+    padding: 18px 20px;
     cursor: pointer;
-    transition: all 0.2s;
     background: #fff;
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.2s;
   }
 
-  .package-card:hover { border-color: var(--gold); }
-  .package-card.selected {
-    border-color: var(--gold);
-    background: linear-gradient(135deg, #fdf8f0, #fef3e0);
-    box-shadow: 0 4px 16px rgba(201,151,74,0.2);
+  .package.selected {
+    border-color: #c9974a;
+    background: #fef3e0;
   }
 
-  .package-badge {
+  .pkg-badge {
     position: absolute;
-    top: -9px; right: 14px;
-    background: var(--accent);
+    top: -10px; right: 16px;
+    background: #e07b5a;
     color: #fff;
-    font-size: 1.58rem;
+    font-size: 0.5rem;
     font-weight: 700;
     letter-spacing: 1px;
-    padding: 3px 9px;
+    padding: 4px 10px;
     border-radius: 10px;
     text-transform: uppercase;
   }
 
-  .package-name { font-family: 'Playfair Display', serif; font-size: 1.95rem; color: var(--deep); }
-  .package-desc { font-size: 1.72rem; color: var(--mid); font-weight: 600; margin-top: 2px; }
-  .package-price { font-size: 1.1rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+  .pkg-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: #1a0a2e;
+  }
 
-  /* SUBMIT */
-  .btn-submit {
+  .pkg-desc { font-size: 0.65rem; color: #6b4226; font-weight: 600; margin-top: 3px; }
+  .pkg-price { font-size: 1.1rem; font-weight: 700; color: #c9974a; flex-shrink: 0; }
+
+  .submit-btn {
     width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--gold), var(--accent));
+    padding: 20px;
+    background: linear-gradient(135deg, #c9974a, #e07b5a);
     color: #fff;
     border: none;
-    border-radius: 14px;
+    border-radius: 16px;
     font-family: 'Quicksand', sans-serif;
-    font-size: 1.95rem;
+    font-size: 1rem;
     font-weight: 700;
-    letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 6px 20px rgba(201,151,74,0.35);
-    margin-top: 8px;
+    margin-top: 10px;
+    box-shadow: 0 6px 20px rgba(201,151,74,0.4);
   }
 
-  .btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(201,151,74,0.45);
-  }
+  .helper { font-size: 0.6rem; color: #d4a96a; margin-top: 8px; font-weight: 600; }
 
-  .helper {
-    font-size: 1.7rem;
-    color: var(--soft);
-    margin-top: 6px;
-    font-weight: 600;
-  }
-
-  /* SUCCESS */
   .success {
     display: none;
     text-align: center;
-    padding: 40px 24px;
+    padding: 60px 28px;
+    background: #fdf8f0;
+    border-radius: 28px 28px 0 0;
   }
 
-  .success-icon { font-size: 60px; display: block; margin-bottom: 16px; }
+  .success-icon { font-size: 4rem; display: block; margin-bottom: 20px; }
 
   .success h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--deep);
-    margin-bottom: 8px;
+    font-size: 1.8rem;
+    color: #1a0a2e;
+    margin-bottom: 12px;
   }
 
-  .success p { color: var(--mid); font-size: 1.88rem; font-weight: 600; line-height: 1.6; }
+  .success p { color: #6b4226; font-size: 0.85rem; line-height: 1.7; margin-bottom: 24px; }
 
   .ref-box {
-    background: var(--warm);
-    border: 2px dashed var(--soft);
-    border-radius: 12px;
-    padding: 16px;
-    margin-top: 20px;
-    font-size: 1.78rem;
-    color: var(--mid);
+    background: #f5efe6;
+    border: 2px dashed #d4a96a;
+    border-radius: 16px;
+    padding: 20px;
+    font-size: 0.75rem;
+    color: #6b4226;
     font-weight: 600;
   }
 
   .ref-box strong {
     display: block;
     font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--gold);
-    margin-bottom: 4px;
+    font-size: 1.3rem;
+    color: #c9974a;
+    margin-bottom: 6px;
   }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="star" style="width:2px;height:2px;top:12%;left:15%;opacity:0.5"></div>
-  <div class="star" style="width:3px;height:3px;top:22%;left:78%;opacity:0.4"></div>
-  <div class="star" style="width:2px;height:2px;top:65%;left:8%;opacity:0.4"></div>
-  <div class="star" style="width:2px;height:2px;top:70%;left:88%;opacity:0.3"></div>
-
-  <span class="book-emoji">📖</span>
-  <div class="header-badge">NordPrintHouse</div>
+  <span class="emoji">📖</span>
+  <div class="badge">NordPrintHouse</div>
   <h1>Create <span>Their</span> Story</h1>
-  <p>Fill in your child's details below — we'll do the rest</p>
+  <p>Fill in your child's details — we'll do the rest</p>
 </div>
 
-<div class="form-wrap" id="mainForm">
+<div class="body" id="mainForm">
 
-  <!-- SECTION 1 -->
   <div class="section">
     <div class="section-title">About Your Child 🧒</div>
     <div class="section-sub">Tell us who this magical book is for</div>
@@ -397,113 +333,111 @@
     <div class="field">
       <label>Pronouns *</label>
       <div class="chips">
-        <button class="chip" onclick="selectChip(this,'gender','He/Him')">He / Him</button>
-        <button class="chip" onclick="selectChip(this,'gender','She/Her')">She / Her</button>
-        <button class="chip" onclick="selectChip(this,'gender','They/Them')">They / Them</button>
+        <button class="chip" onclick="pick(this,'gender','He/Him')">He / Him</button>
+        <button class="chip" onclick="pick(this,'gender','She/Her')">She / Her</button>
+        <button class="chip" onclick="pick(this,'gender','They/Them')">They / Them</button>
       </div>
     </div>
 
     <div class="field">
-      <label>Favourite Animal (appears in story) *</label>
+      <label>Favourite Animal *</label>
       <div class="chips">
-        <button class="chip" onclick="selectChip(this,'animal','Dragon')">🐉 Dragon</button>
-        <button class="chip" onclick="selectChip(this,'animal','Fox')">🦊 Fox</button>
-        <button class="chip" onclick="selectChip(this,'animal','Butterfly')">🦋 Butterfly</button>
-        <button class="chip" onclick="selectChip(this,'animal','Dolphin')">🐬 Dolphin</button>
-        <button class="chip" onclick="selectChip(this,'animal','Lion')">🦁 Lion</button>
-        <button class="chip" onclick="selectChip(this,'animal','Elephant')">🐘 Elephant</button>
-        <button class="chip" onclick="selectChip(this,'animal','Unicorn')">🦄 Unicorn</button>
-        <button class="chip" onclick="selectChip(this,'animal','Panda')">🐼 Panda</button>
+        <button class="chip" onclick="pick(this,'animal','Dragon')">🐉 Dragon</button>
+        <button class="chip" onclick="pick(this,'animal','Fox')">🦊 Fox</button>
+        <button class="chip" onclick="pick(this,'animal','Butterfly')">🦋 Butterfly</button>
+        <button class="chip" onclick="pick(this,'animal','Dolphin')">🐬 Dolphin</button>
+        <button class="chip" onclick="pick(this,'animal','Lion')">🦁 Lion</button>
+        <button class="chip" onclick="pick(this,'animal','Elephant')">🐘 Elephant</button>
+        <button class="chip" onclick="pick(this,'animal','Unicorn')">🦄 Unicorn</button>
+        <button class="chip" onclick="pick(this,'animal','Panda')">🐼 Panda</button>
       </div>
     </div>
 
     <div class="field">
       <label>Adventure Theme *</label>
       <div class="chips">
-        <button class="chip" onclick="selectChip(this,'theme','Moon & Stars')">🌙 Moon & Stars</button>
-        <button class="chip" onclick="selectChip(this,'theme','Ocean Adventure')">🌊 Ocean</button>
-        <button class="chip" onclick="selectChip(this,'theme','Enchanted Castle')">🏰 Castle</button>
-        <button class="chip" onclick="selectChip(this,'theme','Space Explorer')">🚀 Space</button>
-        <button class="chip" onclick="selectChip(this,'theme','Magical Forest')">🌲 Forest</button>
-        <button class="chip" onclick="selectChip(this,'theme','Superhero')">🦸 Superhero</button>
+        <button class="chip" onclick="pick(this,'theme','Moon & Stars')">🌙 Moon & Stars</button>
+        <button class="chip" onclick="pick(this,'theme','Ocean')">🌊 Ocean</button>
+        <button class="chip" onclick="pick(this,'theme','Castle')">🏰 Castle</button>
+        <button class="chip" onclick="pick(this,'theme','Space')">🚀 Space</button>
+        <button class="chip" onclick="pick(this,'theme','Forest')">🌲 Forest</button>
+        <button class="chip" onclick="pick(this,'theme','Superhero')">🦸 Superhero</button>
       </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- SECTION 2 -->
   <div class="section">
     <div class="section-title">Their Appearance 🎨</div>
     <div class="section-sub">So the illustrations look just like them</div>
 
     <div class="field">
       <label>Skin Tone *</label>
-      <div class="skin-tones">
-        <button class="skin-btn" style="background:#FDDBB4" onclick="selectSkin(this,'Light')" title="Light"></button>
-        <button class="skin-btn" style="background:#EAB88A" onclick="selectSkin(this,'Light Medium')" title="Light Medium"></button>
-        <button class="skin-btn" style="background:#C68642" onclick="selectSkin(this,'Medium')" title="Medium"></button>
-        <button class="skin-btn" style="background:#8D5524" onclick="selectSkin(this,'Medium Dark')" title="Medium Dark"></button>
-        <button class="skin-btn" style="background:#4A2912" onclick="selectSkin(this,'Dark')" title="Dark"></button>
+      <div class="skins">
+        <button class="skin" style="background:#FDDBB4" onclick="pickSkin(this,'Light')" title="Light"></button>
+        <button class="skin" style="background:#EAB88A" onclick="pickSkin(this,'Light Medium')" title="Light Medium"></button>
+        <button class="skin" style="background:#C68642" onclick="pickSkin(this,'Medium')" title="Medium"></button>
+        <button class="skin" style="background:#8D5524" onclick="pickSkin(this,'Medium Dark')" title="Medium Dark"></button>
+        <button class="skin" style="background:#4A2912" onclick="pickSkin(this,'Dark')" title="Dark"></button>
       </div>
     </div>
 
     <div class="field">
       <label>Hair Colour *</label>
-      <div class="swatches">
-        <button class="swatch" style="background:#1a0800" onclick="selectHair(this,'Black')" title="Black"></button>
-        <button class="swatch" style="background:#3b1f0a" onclick="selectHair(this,'Dark Brown')" title="Dark Brown"></button>
-        <button class="swatch" style="background:#7b4a1e" onclick="selectHair(this,'Brown')" title="Brown"></button>
-        <button class="swatch" style="background:#c4832d" onclick="selectHair(this,'Auburn')" title="Auburn"></button>
-        <button class="swatch" style="background:#d4a044" onclick="selectHair(this,'Blonde')" title="Blonde"></button>
-        <button class="swatch" style="background:#f0e6c0" onclick="selectHair(this,'Light Blonde')" title="Light Blonde"></button>
-        <button class="swatch" style="background:#c0392b" onclick="selectHair(this,'Red')" title="Red"></button>
-        <button class="swatch" style="background:#888" onclick="selectHair(this,'Grey')" title="Grey"></button>
+      <div class="swatches" id="hairSwatches">
+        <button class="swatch" style="background:#1a0800" onclick="pickHair(this,'Black')"></button>
+        <button class="swatch" style="background:#3b1f0a" onclick="pickHair(this,'Dark Brown')"></button>
+        <button class="swatch" style="background:#7b4a1e" onclick="pickHair(this,'Brown')"></button>
+        <button class="swatch" style="background:#c4832d" onclick="pickHair(this,'Auburn')"></button>
+        <button class="swatch" style="background:#d4a044" onclick="pickHair(this,'Blonde')"></button>
+        <button class="swatch" style="background:#f0e6c0;border:2px solid #ddd" onclick="pickHair(this,'Light Blonde')"></button>
+        <button class="swatch" style="background:#c0392b" onclick="pickHair(this,'Red')"></button>
+        <button class="swatch" style="background:#888" onclick="pickHair(this,'Grey')"></button>
       </div>
     </div>
 
     <div class="field">
       <label>Hair Style *</label>
       <div class="chips">
-        <button class="chip" onclick="selectChip(this,'hairstyle','Short & straight')">Short & straight</button>
-        <button class="chip" onclick="selectChip(this,'hairstyle','Long & straight')">Long & straight</button>
-        <button class="chip" onclick="selectChip(this,'hairstyle','Curly')">Curly</button>
-        <button class="chip" onclick="selectChip(this,'hairstyle','Wavy')">Wavy</button>
-        <button class="chip" onclick="selectChip(this,'hairstyle','Pigtails')">Pigtails</button>
-        <button class="chip" onclick="selectChip(this,'hairstyle','Braids')">Braids</button>
-        <button class="chip" onclick="selectChip(this,'hairstyle','Afro')">Afro</button>
-        <button class="chip" onclick="selectChip(this,'hairstyle','Bun')">Bun</button>
+        <button class="chip" onclick="pick(this,'hairstyle','Short & straight')">Short & straight</button>
+        <button class="chip" onclick="pick(this,'hairstyle','Long & straight')">Long & straight</button>
+        <button class="chip" onclick="pick(this,'hairstyle','Curly')">Curly</button>
+        <button class="chip" onclick="pick(this,'hairstyle','Wavy')">Wavy</button>
+        <button class="chip" onclick="pick(this,'hairstyle','Pigtails')">Pigtails</button>
+        <button class="chip" onclick="pick(this,'hairstyle','Braids')">Braids</button>
+        <button class="chip" onclick="pick(this,'hairstyle','Afro')">Afro</button>
+        <button class="chip" onclick="pick(this,'hairstyle','Bun')">Bun</button>
       </div>
     </div>
 
     <div class="field">
       <label>Eye Colour *</label>
-      <div class="swatches">
-        <button class="swatch" style="background:#2e4a8a" onclick="selectEye(this,'Blue')" title="Blue"></button>
-        <button class="swatch" style="background:#3d7a3d" onclick="selectEye(this,'Green')" title="Green"></button>
-        <button class="swatch" style="background:#7b5c3a" onclick="selectEye(this,'Brown')" title="Brown"></button>
-        <button class="swatch" style="background:#5a5a5a" onclick="selectEye(this,'Grey')" title="Grey"></button>
-        <button class="swatch" style="background:#2a2a2a" onclick="selectEye(this,'Dark Brown')" title="Dark Brown"></button>
-        <button class="swatch" style="background:#7a9a40" onclick="selectEye(this,'Hazel')" title="Hazel"></button>
+      <div class="swatches" id="eyeSwatches">
+        <button class="swatch" style="background:#2e4a8a" onclick="pickEye(this,'Blue')"></button>
+        <button class="swatch" style="background:#3d7a3d" onclick="pickEye(this,'Green')"></button>
+        <button class="swatch" style="background:#7b5c3a" onclick="pickEye(this,'Brown')"></button>
+        <button class="swatch" style="background:#5a5a5a" onclick="pickEye(this,'Grey')"></button>
+        <button class="swatch" style="background:#2a2a2a" onclick="pickEye(this,'Dark Brown')"></button>
+        <button class="swatch" style="background:#7a9a40" onclick="pickEye(this,'Hazel')"></button>
       </div>
     </div>
 
     <div class="field">
       <label>Extras</label>
-      <div class="toggle-row" onclick="toggleFeature('glasses')">
+      <div class="toggle-row" onclick="tog('glasses')">
         <span class="toggle-label">👓 Wears Glasses</span>
-        <div class="toggle" id="glasses"></div>
+        <div class="toggle" id="tGlasses"></div>
       </div>
-      <div class="toggle-row" onclick="toggleFeature('freckles')">
+      <div class="toggle-row" onclick="tog('freckles')">
         <span class="toggle-label">✨ Has Freckles</span>
-        <div class="toggle" id="freckles"></div>
+        <div class="toggle" id="tFreckles"></div>
       </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- SECTION 3 -->
   <div class="section">
     <div class="section-title">Personal Touches 💛</div>
 
@@ -514,70 +448,65 @@
 
     <div class="field">
       <label>Dedication Message</label>
-      <textarea id="dedication" placeholder="e.g. To our brave and beautiful Amara — you are loved to the moon and back ❤️" maxlength="200"></textarea>
+      <textarea id="dedication" placeholder="e.g. To our brave and beautiful Amara — loved to the moon and back ❤️" maxlength="200"></textarea>
       <div class="helper">Max 200 characters</div>
     </div>
 
     <div class="field">
-      <label>Your Etsy Order Number *</label>
+      <label>Etsy Order Number *</label>
       <input type="text" id="orderNum" placeholder="e.g. 1234567890">
     </div>
 
     <div class="field">
       <label>Your Email Address *</label>
-      <input type="email" id="email" placeholder="We'll send you updates here">
+      <input type="email" id="email" placeholder="We'll send updates here">
     </div>
 
     <div class="field">
       <label>Anything else we should know?</label>
-      <textarea id="notes" placeholder="e.g. She loves dinosaurs, recently lost her first tooth, has a little brother called Noah..." maxlength="300"></textarea>
+      <textarea id="notes" placeholder="e.g. She loves dinosaurs, has a little brother called Noah..." maxlength="300"></textarea>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- PACKAGE -->
   <div class="section">
     <div class="section-title">Your Package 📦</div>
     <div class="section-sub">Confirm what you ordered</div>
-
     <div class="packages">
-      <div class="package-card" onclick="selectPackage(this,'PDF Digital Copy','£19.99')">
+      <div class="package" onclick="pickPkg(this,'PDF Digital Copy £19.99')">
         <div>
-          <div class="package-name">PDF Digital Copy</div>
-          <div class="package-desc">Delivered by email in 3 days</div>
+          <div class="pkg-name">PDF Digital Copy</div>
+          <div class="pkg-desc">Delivered by email in 3 days</div>
         </div>
-        <div class="package-price">£19.99</div>
+        <div class="pkg-price">£19.99</div>
       </div>
-
-      <div class="package-card" onclick="selectPackage(this,'Printed Softcover','£39.99')">
-        <div class="package-badge">Most Popular</div>
+      <div class="package" onclick="pickPkg(this,'Printed Softcover £39.99')">
+        <div class="pkg-badge">Most Popular</div>
         <div>
-          <div class="package-name">Printed Softcover</div>
-          <div class="package-desc">Professionally printed & posted</div>
+          <div class="pkg-name">Printed Softcover</div>
+          <div class="pkg-desc">Professionally printed & posted</div>
         </div>
-        <div class="package-price">£39.99</div>
+        <div class="pkg-price">£39.99</div>
       </div>
-
-      <div class="package-card" onclick="selectPackage(this,'Printed Hardcover','£59.99')">
+      <div class="package" onclick="pickPkg(this,'Printed Hardcover £59.99')">
         <div>
-          <div class="package-name">Hardcover Gift Edition</div>
-          <div class="package-desc">Premium hardcover, gift wrapped</div>
+          <div class="pkg-name">Hardcover Gift Edition</div>
+          <div class="pkg-desc">Premium hardcover, gift wrapped</div>
         </div>
-        <div class="package-price">£59.99</div>
+        <div class="pkg-price">£59.99</div>
       </div>
     </div>
   </div>
 
-  <button class="btn-submit" onclick="submitForm()">✨ Submit My Details</button>
+  <button class="submit-btn" onclick="submitForm()">✨ Submit My Details</button>
 
 </div>
 
-<!-- SUCCESS -->
 <div class="success" id="successScreen">
   <span class="success-icon">🌟</span>
   <h2>Details Received!</h2>
-  <p>Thank you! We've received everything we need and will begin creating your child's story within 24 hours. You'll receive an email update shortly.</p>
+  <p>Thank you! We'll begin creating your child's story within 24 hours. You'll receive an email update shortly.</p>
   <div class="ref-box">
     <strong id="refNum">NPH-00000</strong>
     Keep this reference for your order
@@ -585,62 +514,52 @@
 </div>
 
 <script>
-  const state = {
-    gender:'', animal:'', theme:'', hairstyle:'',
-    skin:'', hair:'', eye:'',
-    glasses:false, freckles:false,
-    package:''
-  };
+  var s = { gender:'',animal:'',theme:'',hairstyle:'',skin:'',hair:'',eye:'',glasses:false,freckles:false,pkg:'' };
 
-  function selectChip(el, key, val) {
-    el.closest('.chips').querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+  function pick(el,key,val) {
+    el.closest('.chips').querySelectorAll('.chip').forEach(function(c){c.classList.remove('selected');});
     el.classList.add('selected');
-    state[key] = val;
+    s[key]=val;
   }
 
-  function selectSkin(el, val) {
-    document.querySelectorAll('.skin-btn').forEach(b => b.classList.remove('selected'));
-    el.classList.add('selected');
-    state.skin = val;
+  function pickSkin(el,val) {
+    document.querySelectorAll('.skin').forEach(function(b){b.classList.remove('selected');});
+    el.classList.add('selected'); s.skin=val;
   }
 
-  function selectHair(el, val) {
-    el.closest('.swatches').querySelectorAll('.swatch').forEach(b => b.classList.remove('selected'));
-    el.classList.add('selected');
-    state.hair = val;
+  function pickHair(el,val) {
+    document.querySelectorAll('#hairSwatches .swatch').forEach(function(b){b.classList.remove('selected');});
+    el.classList.add('selected'); s.hair=val;
   }
 
-  function selectEye(el, val) {
-    el.closest('.swatches').querySelectorAll('.swatch').forEach(b => b.classList.remove('selected'));
-    el.classList.add('selected');
-    state.eye = val;
+  function pickEye(el,val) {
+    document.querySelectorAll('#eyeSwatches .swatch').forEach(function(b){b.classList.remove('selected');});
+    el.classList.add('selected'); s.eye=val;
   }
 
-  function toggleFeature(key) {
-    state[key] = !state[key];
-    document.getElementById(key).classList.toggle('on', state[key]);
+  function tog(key) {
+    s[key]=!s[key];
+    var id = key==='glasses'?'tGlasses':'tFreckles';
+    document.getElementById(id).classList.toggle('on',s[key]);
   }
 
-  function selectPackage(el, name, price) {
-    document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected');
-    state.package = name + ' ' + price;
+  function pickPkg(el,val) {
+    document.querySelectorAll('.package').forEach(function(c){c.classList.remove('selected');});
+    el.classList.add('selected'); s.pkg=val;
   }
 
   function submitForm() {
-    const name = document.getElementById('childName').value;
-    const email = document.getElementById('email').value;
-    const orderNum = document.getElementById('orderNum').value;
-
-    if (!name) { alert('Please enter your child\'s name'); return; }
-    if (!email) { alert('Please enter your email address'); return; }
-    if (!orderNum) { alert('Please enter your Etsy order number'); return; }
-
-    document.getElementById('mainForm').style.display = 'none';
-    document.getElementById('successScreen').style.display = 'block';
-    document.getElementById('refNum').textContent = 'NPH-' + Math.floor(10000 + Math.random() * 90000);
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    var name=document.getElementById('childName').value;
+    var email=document.getElementById('email').value;
+    var order=document.getElementById('orderNum').value;
+    if(!name){alert("Please enter your child's name");return;}
+    if(!email){alert("Please enter your email address");return;}
+    if(!order){alert("Please enter your Etsy order number");return;}
+    document.getElementById('mainForm').style.display='none';
+    document.getElementById('successScreen').style.display='block';
+    document.getElementById('refNum').textContent='NPH-'+Math.floor(10000+Math.random()*90000);
+    window.scrollTo({top:0,behavior:'smooth'});
   }
 </script>
 </body>
-          </html>
+    </html>
