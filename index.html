@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NordPrintHouse — Order Form</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('Ptn_c8XV6s4wp_zq1');</script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { font-size: 22px; }
@@ -549,16 +551,57 @@
   }
 
   function submitForm() {
-    var name=document.getElementById('childName').value;
-    var email=document.getElementById('email').value;
-    var order=document.getElementById('orderNum').value;
+    var name=document.getElementById('childName').value.trim();
+    var email=document.getElementById('email').value.trim();
+    var order=document.getElementById('orderNum').value.trim();
+    var notes=document.getElementById('notes').value.trim();
+    var age=document.getElementById('childAge').value;
     if(!name){alert("Please enter your child's name");return;}
     if(!email){alert("Please enter your email address");return;}
     if(!order){alert("Please enter your Etsy order number");return;}
-    document.getElementById('mainForm').style.display='none';
-    document.getElementById('successScreen').style.display='block';
-    document.getElementById('refNum').textContent='NPH-'+Math.floor(10000+Math.random()*90000);
-    window.scrollTo({top:0,behavior:'smooth'});
+    if(!s.gender){alert("Please select pronouns");return;}
+    if(!s.theme){alert("Please select an adventure theme");return;}
+    if(!s.pkg){alert("Please select your package");return;}
+
+    var ref='NPH-'+Math.floor(10000+Math.random()*90000);
+    var btn=document.querySelector('.submit-btn');
+    btn.textContent='Sending...';
+    btn.disabled=true;
+
+    var params={
+      to_email:       'Mikegee395@outlook.com',
+      reply_to:       email,
+      subject:        'New NordPrintHouse Order: '+name+' ('+ref+')',
+      reference:      ref,
+      order_number:   order,
+      customer_email: email,
+      child_name:     name,
+      age:            age,
+      pronouns:       s.gender,
+      animal:         s.animal||'Not selected',
+      theme:          s.theme,
+      skin_tone:      s.skin||'Not selected',
+      hair_colour:    s.hair||'Not selected',
+      hair_style:     s.hairstyle||'Not selected',
+      eye_colour:     s.eye||'Not selected',
+      glasses:        s.glasses?'Yes':'No',
+      freckles:       s.freckles?'Yes':'No',
+      package:        s.pkg,
+      notes:          notes||'None'
+    };
+
+    emailjs.send('service_t0qsn3l','template_gobw3cb',params)
+      .then(function(){
+        document.getElementById('mainForm').style.display='none';
+        document.getElementById('successScreen').style.display='block';
+        document.getElementById('refNum').textContent=ref;
+        window.scrollTo({top:0,behavior:'smooth'});
+      },function(err){
+        btn.textContent='Submit My Details';
+        btn.disabled=false;
+        alert('Something went wrong. Please email Mikegee395@outlook.com with your order details.');
+        console.error('EmailJS error:',err);
+      });
   }
 </script>
 </body>
